@@ -106,7 +106,7 @@ input {
 .undo-task {
   font-size: 16px;
   padding-top: 0.5vh;
-  color: #08c919;
+  color: #5ca362;
 }
 
 .complete-list {
@@ -114,7 +114,7 @@ input {
 }
 
 .completed-num {
-  color: #08c919;
+  color: #5ca362;
 }
 
 @media screen and (max-width: 450px) {
