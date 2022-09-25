@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Inter+Tight&family=Work+Sans&display=swap");
+
+* {
+  text-align: center;
+  justify-content: center;
+  font-family: "Inter Tight", sans-serif;
+  box-sizing: border-box;
+}
+
+.main-title {
+  color: rgb(0, 150, 255);
+}
+
+// Style for To Do List Items
+.task-list {
+  padding-right: 5vh;
+}
+
+.list-items {
+  display: flex;
+  list-style-type: none;
+}
+
+.list-items li {
+  margin: 0px 15px;
+  font-family: "Balsamiq Sans", sans-serif;
+  font-size: 26px;
+}
+
+.check {
+  font-size: 18px;
+  padding-top: 0.6vh;
+  color: rgb(0, 150, 255);
+}
+
+.remove {
+  font-size: 14px;
+  padding-top: 1vh;
+  color: red;
+}
+
+// Style for User Input, Adding Tasks
+
+input {
+  text-align: left;
+}
+
+#input-label {
+  font-weight: 600;
+}
+
+.add-task {
+  background-color: rgb(0, 150, 255);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;
+  transform: scale(110%);
+}
+
+// Style for Tasks Count
+.num-tasks {
+  font-family: "Work Sans", sans-serif;
+}
+
+.task-number {
+  color: rgb(0, 150, 255);
+}
+
+// Style for Completed Bar
+
+.completed {
+  display: flex;
+  p {
+    font-family: "Inter Tight", sans-serif;
+    font-size: 24px;
+  }
+}
+
+.completed-bar {
+  border: 1px grey solid;
+  margin: 0 42vw;
+}
+
+.list-arrows {
+  padding-top: 2.7vh;
+  padding-left: 30px;
+}
+
+.complete-list-items {
+  display: flex;
+  list-style-type: none;
+  li {
+    text-decoration: line-through;
+    margin: 0px 15px;
+    font-size: 22px;
+    font-family: "Balsamiq Sans", sans-serif;
+  }
+}
+
+.undo-task {
+  font-size: 16px;
+  padding-top: 0.5vh;
+  color: rgb(8, 201, 25);
+}
+
+.complete-list {
+  display: none;
+}
+
+.completed-num {
+  color: rgb(8, 201, 25);
+}
+
+// 2. Mobile Design
+
+@media screen and (max-width: 450px) {
+  .completed-bar {
+    margin: 0;
+  }
+}
+
+// 3.Ipad Design
+
+@media screen and (min-width: 450px) and (max-width: 1200px) {
+  body {
+    font-size: 1.5rem;
+  }
+  #input,
+  .add-task {
+    transform: scale(200%);
+  }
+
+  .add-task {
+    margin-left: 18vw;
+  }
+
+  .completed-bar {
+    margin: 0;
+  }
+
+  .list-items li,
+  .complete-list-items li {
+    font-size: 1.8rem;
+  }
+
+  .completed,
+  .completed p {
+    font-size: 1.7rem;
+  }
+
+  .list-arrows {
+    padding-top: 3vh;
+  }
+}

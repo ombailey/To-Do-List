@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Inter+Tight&family=Work+Sans&display=swap");
+* {
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Inter Tight", sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.main-title {
+  color: #0096ff;
+}
+
+.task-list {
+  padding-right: 5vh;
+}
+
+.list-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+}
+
+.list-items li {
+  margin: 0px 15px;
+  font-family: "Balsamiq Sans", sans-serif;
+  font-size: 26px;
+}
+
+.check {
+  font-size: 18px;
+  padding-top: 0.6vh;
+  color: #0096ff;
+}
+
+.remove {
+  font-size: 14px;
+  padding-top: 1vh;
+  color: red;
+}
+
+input {
+  text-align: left;
+}
+
+#input-label {
+  font-weight: 600;
+}
+
+.add-task {
+  background-color: #0096ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;
+  -webkit-transform: scale(110%);
+          transform: scale(110%);
+}
+
+.num-tasks {
+  font-family: "Work Sans", sans-serif;
+}
+
+.task-number {
+  color: #0096ff;
+}
+
+.completed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.completed p {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 24px;
+}
+
+.completed-bar {
+  border: 1px grey solid;
+  margin: 0 42vw;
+}
+
+.list-arrows {
+  padding-top: 2.7vh;
+  padding-left: 30px;
+}
+
+.complete-list-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+}
+
+.complete-list-items li {
+  text-decoration: line-through;
+  margin: 0px 15px;
+  font-size: 22px;
+  font-family: "Balsamiq Sans", sans-serif;
+}
+
+.undo-task {
+  font-size: 16px;
+  padding-top: 0.5vh;
+  color: #08c919;
+}
+
+.complete-list {
+  display: none;
+}
+
+.completed-num {
+  color: #08c919;
+}
+
+@media screen and (max-width: 450px) {
+  .completed-bar {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 450px) and (max-width: 1200px) {
+  body {
+    font-size: 1.5rem;
+  }
+  #input,
+  .add-task {
+    -webkit-transform: scale(200%);
+            transform: scale(200%);
+  }
+  .add-task {
+    margin-left: 18vw;
+  }
+  .completed-bar {
+    margin: 0;
+  }
+  .list-items li,
+  .complete-list-items li {
+    font-size: 1.8rem;
+  }
+  .completed,
+  .completed p {
+    font-size: 1.7rem;
+  }
+  .list-arrows {
+    padding-top: 3vh;
+  }
+}
+/*# sourceMappingURL=App.css.map */
