@@ -7,6 +7,7 @@ import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 // Display Entire Application
 function App() {
@@ -23,38 +24,99 @@ function List() {
   const [toDo, changeToDo] = useState([]);
   const [completedList, changeCompletedList] = useState([]);
 
+  // Get local storage items upon refresh
+  useEffect(() => {
+    let save = JSON.parse(window.localStorage.getItem("savedList") || "[]");
+    if (save !== null) changeToDo(save);
+  }, []);
+
+  useEffect(() => {
+    let save = JSON.parse(window.localStorage.getItem("savedComplete") || "[]");
+    if (save !== null) changeCompletedList(save);
+  }, []);
+
+  // Set local storage items
+  useEffect(() => {
+    window.localStorage.setItem("savedList", JSON.stringify(toDo));
+  }, [toDo]);
+
+  useEffect(() => {
+    window.localStorage.setItem("savedComplete", JSON.stringify(completedList));
+  }, [completedList]);
+
+  // List Functions
   const completeTask = (event) => {
     let task = event.target;
+
+    if (
+      (task.parentNode.previousElementSibling !== null &&
+        task.parentNode.previousElementSibling.lastElementChild
+          .firstElementChild.style.color === "orange") ||
+      (task.parentNode.nextElementSibling !== null &&
+        task.parentNode.nextElementSibling.lastElementChild.firstElementChild
+          .style.color === "orange")
+    ) {
+      task.parentNode.lastElementChild.firstElementChild.style.color = "orange";
+    } else {
+      task.parentNode.lastElementChild.firstElementChild.style.color = "black";
+    }
+
+    console.log(task.parentNode.lastElementChild.children.length);
+
     changeCompletedList([
-      ...toDo.filter((item) => item.id == task.previousElementSibling.id),
+      ...toDo.filter(
+        (item) => item.id === task.parentNode.firstElementChild.id
+      ),
       ...completedList,
     ]);
+
     changeToDo(
-      toDo.filter((item) => item.id != task.previousElementSibling.id)
+      toDo.filter((item) => item.id !== task.parentNode.firstElementChild.id)
     );
   };
 
   const deleteTask = (event) => {
     let task = event.target;
-    changeToDo(toDo.filter((item) => item.id != task.nextElementSibling.id));
+    changeToDo(
+      toDo.filter((item) => item.id !== task.parentNode.firstElementChild.id)
+    );
   };
 
+  const markPriority = (event) => {
+    console.log(event.target.parentNode.style.color);
+    let task = event.target;
+    if (task.style.color === "orange") {
+      task.style.color = "black";
+    } else {
+      task.style.color = "orange";
+    }
+  };
   return (
     <div>
       <Input toDo={toDo} changeToDo={changeToDo} />
       <ul className="task-list">
         {toDo.map((item) => (
           <div className="list-items">
+            <li
+              id={item.id}
+              // onClick={toggleSubTask}
+            >
+              {item.name}
+            </li>
             <FontAwesomeIcon
-              className="remove"
+              className="remove task-icons"
               icon={faX}
               onClick={deleteTask}
             />
-            <li id={item.id}>{item.name}</li>
             <FontAwesomeIcon
-              className="check"
+              className="check task-icons"
               icon={faCheck}
               onClick={completeTask}
+            />
+            <FontAwesomeIcon
+              className="priority task-icons"
+              icon={faStar}
+              onClick={markPriority}
             />
           </div>
         ))}
@@ -99,7 +161,7 @@ function Input({ toDo, changeToDo }) {
   });
 
   return (
-    <div>
+    <div class="input-btns">
       <input
         type="text"
         name="input"
@@ -130,7 +192,7 @@ function Completed({ completedList, toDo, changeToDo, changeCompletedList }) {
   const [arrowDirection, changeArrowDirection] = useState("up");
 
   let arrow = faAngleUp;
-  if (arrowDirection == "up") {
+  if (arrowDirection === "up") {
     arrow = faAngleUp;
   } else {
     arrow = faAngleDown;
@@ -138,7 +200,7 @@ function Completed({ completedList, toDo, changeToDo, changeCompletedList }) {
 
   const toggleList = () => {
     let cList = document.querySelector(".complete-list");
-    if (arrowDirection == "up") {
+    if (arrowDirection === "up") {
       changeArrowDirection("down");
       cList.style.display = "initial";
     } else {
@@ -150,11 +212,11 @@ function Completed({ completedList, toDo, changeToDo, changeCompletedList }) {
   const undoTask = (event) => {
     let task = event.target;
     changeCompletedList(
-      completedList.filter((item) => item.id != task.previousElementSibling.id)
+      completedList.filter((item) => item.id !== task.previousElementSibling.id)
     );
     changeToDo([
       ...completedList.filter(
-        (item) => item.id == task.previousElementSibling.id
+        (item) => item.id === task.previousElementSibling.id
       ),
       ...toDo,
     ]);
@@ -188,4 +250,35 @@ function Completed({ completedList, toDo, changeToDo, changeCompletedList }) {
     </div>
   );
 }
+
+// function SubTask() {
+//   const [subTasks, changeSubTasks] = useState([]);
+
+//   // const addSubTask = () => {
+//   //   let newTask = { name: taskText, id: uuidv4() };
+//   //   changeSubTasks([newTask, ...subTasks]);
+//   //   clearInput();
+//   // };
+
+//   return (
+//     <div>
+//       <div className="sub-task-input">
+//         <input placeholder="New Subtask..." type="text"></input>
+//         <button>Add</button>
+//       </div>
+//       <ul className="sub-task-lists">
+//         {subTasks.map((item) => (
+//           <div className="sub-task-items">
+//             <li id={item.id}>{item.name}</li>
+//             <FontAwesomeIcon
+//               className="check"
+//               icon={faCheck}
+//               // onClick={completeTask}
+//             />
+//           </div>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
 export default App;

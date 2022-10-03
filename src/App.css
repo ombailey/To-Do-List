@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Inter+Tight&family=Work+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow&family=Inter+Tight&family=Work+Sans&display=swap");
 * {
   text-align: center;
   -webkit-box-pack: center;
@@ -11,53 +11,77 @@
 
 .main-title {
   color: #0096ff;
+  font-size: 3rem;
 }
 
 .task-list {
   padding-right: 5vh;
+  list-style-type: none;
+  cursor: pointer;
+  margin: 0 35vw;
+}
+
+.task-icons {
+  padding: 0 5px;
+  font-size: 20px;
 }
 
 .list-items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  list-style-type: none;
+  border: 2px #0096ff solid;
+  border-radius: 5px;
+  margin: 15px 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .list-items li {
   margin: 0px 15px;
-  font-family: "Balsamiq Sans", sans-serif;
-  font-size: 26px;
+  font-family: "Barlow", sans-serif;
+  font-size: 28px;
+  height: auto;
+  padding-bottom: 0.5vh;
 }
 
 .check {
-  font-size: 18px;
-  padding-top: 0.6vh;
   color: #0096ff;
 }
 
 .remove {
-  font-size: 14px;
-  padding-top: 1vh;
   color: red;
+}
+
+.priority {
+  padding-bottom: 0.3vh;
 }
 
 input {
   text-align: left;
+  height: 5vh;
+  border-radius: 5px;
+  width: 20vw;
+  font-size: 24px;
 }
 
 #input-label {
   font-weight: 600;
 }
 
+.input-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .add-task {
   background-color: #0096ff;
   color: white;
-  border: none;
+  border: 1px black solid;
   border-radius: 5px;
-  margin-left: 5px;
-  -webkit-transform: scale(110%);
-          transform: scale(110%);
+  padding: 10px;
 }
 
 .num-tasks {
@@ -76,17 +100,19 @@ input {
 
 .completed p {
   font-family: "Inter Tight", sans-serif;
-  font-size: 24px;
+  font-size: 30px;
 }
 
 .completed-bar {
   border: 1px grey solid;
-  margin: 0 42vw;
+  margin: 0 40vw;
 }
 
 .list-arrows {
-  padding-top: 2.7vh;
+  padding-top: 3.5vh;
   padding-left: 30px;
+  font-size: 28px;
+  cursor: pointer;
 }
 
 .complete-list-items {
@@ -99,14 +125,15 @@ input {
 .complete-list-items li {
   text-decoration: line-through;
   margin: 0px 15px;
-  font-size: 22px;
-  font-family: "Balsamiq Sans", sans-serif;
+  font-size: 28px;
+  font-family: "Barlow", sans-serif;
 }
 
 .undo-task {
-  font-size: 16px;
-  padding-top: 0.5vh;
+  font-size: 24px;
+  padding-top: 0.7vh;
   color: #5ca362;
+  cursor: pointer;
 }
 
 .complete-list {
@@ -117,9 +144,56 @@ input {
   color: #5ca362;
 }
 
+.sub-task-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sub-task-lists {
+  list-style-type: none;
+}
+
 @media screen and (max-width: 450px) {
+  .main-title {
+    font-size: 2rem;
+  }
   .completed-bar {
     margin: 0;
+  }
+  #input,
+  .add-task {
+    -webkit-transform: scale(120%);
+            transform: scale(120%);
+  }
+  input {
+    width: 52vw;
+    font-size: 16px;
+    margin-left: 3vw;
+  }
+  .add-task {
+    margin-left: 6vw;
+  }
+  .list-arrows {
+    padding-top: 3vh;
+    font-size: 30px;
+  }
+  .list-items li,
+  .complete-list li {
+    font-size: 1.1rem;
+  }
+  .task-list {
+    margin: 0;
+  }
+  .task-icons {
+    font-size: 18px;
+  }
+  .completed p {
+    font-size: 26px;
+  }
+  .undo-task {
+    font-size: 18px;
+    padding-top: 0.5vh;
   }
 }
 
@@ -129,11 +203,19 @@ input {
   }
   #input,
   .add-task {
-    -webkit-transform: scale(200%);
-            transform: scale(200%);
+    -webkit-transform: scale(150%);
+            transform: scale(150%);
+  }
+  input {
+    width: 39vw;
+    margin-left: 6vw;
+    font-size: 20px;
+    height: 3vh;
   }
   .add-task {
-    margin-left: 18vw;
+    margin-left: 11.2vw;
+    height: 3vh;
+    padding: 0.5vh;
   }
   .completed-bar {
     margin: 0;
@@ -144,10 +226,24 @@ input {
   }
   .completed,
   .completed p {
-    font-size: 1.7rem;
+    font-size: 2rem;
   }
   .list-arrows {
-    padding-top: 3vh;
+    padding-top: 3.5vh;
+    font-size: 48px;
+  }
+  .undo-task {
+    font-size: 32px;
+    padding-top: 0.5vh;
+  }
+  .task-list {
+    margin: 0 10vw;
+  }
+  .task-icons {
+    font-size: 26px;
+  }
+  .list-items {
+    margin: 35px 0;
   }
 }
 /*# sourceMappingURL=App.css.map */
